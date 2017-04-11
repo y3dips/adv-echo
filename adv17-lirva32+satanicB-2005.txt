@@ -1,0 +1,122 @@
+____________________   ___ ___ ________
+\_   _____/\_   ___ \ /   |   \\_____  \  
+ |    __)_ /    \  \//    ~    \/   |   \ 
+ |        \\     \___\    Y    /    |    \
+/_______  / \______  /\___|_  /\_______  /
+        \/         \/       \/         \/ 
+
+    .OR.ID
+ECHO_ADV_17$2005
+
+---------------------------------------------------------------------------
+            Vulnerabilities in ASP-Nuke community v1.4 SP2
+---------------------------------------------------------------------------
+
+Author: lirva32 & Satanic B
+Date: April, 13th 2005
+Location: Indonesia, Jakarta
+Web: http://echo.or.id/adv/adv015-lirva32+satanicB-2005.txt
+
+---------------------------------------------------------------------------
+
+Affected software description:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+ASP-Nuke community v1.4 SP2
+aSP Nuke is portal software for Windows servers. Specifically, it is an 
+Active Server Pages application for creating online communities. It is mainly 
+a content publishing system centered around article publications.
+
+URL : http://www.asp-nuke.com/
+
+
+---------------------------------------------------------------------------
+
+Vulnerabilities:
+~~~~~~~~~~~~~~~~
+
+Information Disclosure at database file 
+
+vulnerable :
+ 
+  +---------------------------------------------------------+ 
+  :   http://victim.com/db/forum.mdb                        : 
+  :   http://victim.com/db/main.mdb                         :
+  +---------------------------------------------------------+
+
+
+if you execute the script above from your web browser, you can take over 
+the database and move it into your local computer.
+
+solutions :
+
+   . If you have private server, make sure that your database files are 
+     being put outside  the Virtual Directory
+
+   . If you don't have private server, make sure you asked the hosting 
+     side to placed your database files outside the Virtual Directory
+
+ 
+
+or change with :
+
+Setting Changes in ASPNuke :
+
+  . Change 'db' folder with 'your_new_folder'
+    example:
+            'db' folder is being change with 'dbaspnuke'
+
+  . Change database name for both database
+    example:
+    forum.db is being change with forum_.mdb.asp  ---> preventing direct download
+    main.db is being change with main_.mdb.asp    ---> preventing direct download
+
+    why being add with .asp ? to mask the attacker, if the attacker took the database            
+    through his browser then will be denied.  
+
+
+  . Change the asp script in : Configuration-inc.asp
+
+    <%
+
+    Const GLOBAL_SITE_NAME = "......."
+
+    -
+    -
+    -
+   
+    'the original script:
+    'Const GLOBAL_SITE_DATABASE_PATH   = "aspnuke/db/"
+
+
+    'change with :
+    Const GLOBAL_SITE_DATABASE_PATH   = "aspnuke/dbaspnuke" ---> based on your database folder
+    
+    -
+    -
+
+
+    'original script:
+    'Const DB_MAIN          = "main"
+    'Const DB_FORUM         = "forum"
+
+
+    'change with :
+     Const DB_MAIN          = "main_.mdb.asp"    ----> based on your database name    
+     Const DB_FORUM         = "forum_.mdb.asp"   ----> based on your database name    
+
+    -
+    -
+
+    %>
+
+
+---------------------------------------------------------------------------
+
+greetz to : . echo staff (please... forgive me.....)
+            . az001, sevior,InternetKid,BinaInsaniCrew, 
+            . #BekasiHakerz,#BudiLuhurCempaka,#KalengBekas
+
+-------------------------------- [ EOF ] ----------------------------------
+

@@ -1,0 +1,115 @@
+	____________________   ___ ___ ________   
+	\_   _____/\_   ___ \ /   |   \\_____  \  
+	 |    __)_ /    \  \//    ~    \/   |   \ 
+	 |        \\     \___\    Y    /    |    \
+	/_______  / \______  /\___|_  /\_______  /
+	        \/         \/       \/         \/ 
+
+	    .OR.ID
+	ECHO_ADV_01$2004
+
+---------------------------------------------------------------------------------
+
+Author: y3dips
+Date: 26 Juli 2004
+Location: Indonesia, Jakarta
+Web: http://echo.or.id/adv/adv01-y3dips-2004.txt
+
+---------------------------------------------------------------------------------
+
+Affected software description:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Php-Nuke is a popular freeware content management system, written in php by
+Francisco Burzi. This CMS (Content Management System) is used on many thousands
+websites, because it's freeware, easy to install and has broad set of features.
+
+Homepage: http://phpnuke.org
+
+Version :
+tested on PHP-Nuke Web Portal System Version 6.5
+and the newest free version 7.3
+not tested on other version but it is possible be the same
+
+----------------------------------------------------------------------------------
+
+Vulnerabillities
+~~~~~~~~~~~~~~~~
+
+1. SuperUser could Delete GOD account
+
+i dont know what is this call,
+is it a bug or just a trik
+
+but i just want to give you a clue to delete God Account in PHPNUKE ,
+coz u can`t delete it from your PHPNUKE control panel,
+
+see this page http://localhost/PHP-Nuke/admin.php?op=mod_authors
+
+        Edit Admins
+
+	dudul	All	Modify Info	God Admin*	
+	geblek	All	Modify Info	Delete Author	
+	y3dips	All	Modify Info	Delete Author
+
+        *(GOD account can't be deleted) <------ see this note !!!!
+
+what u need just paste this URL'z to your url box , change the path && dudul 
+with id of God account u want to delete. but first u have to be "Super User".
+
+POC : 	y3dips is a super user , dudul its God Admin  
+
+        login as y3dips and then paste this url
+
+	http://localhost/phpnuke/admin.php?op=deladmin2&del_aid=dudul
+
+	and then the dudul its gone,
+
+it prove that , the developer dont make it "Can`t be deleted" but they just
+'hide' a link to execute it.
+
+solutions from me : be carefull to choose your super user :p
+solution from vendor : not contacted yet
+
+
+Clue: what i just want to tell u in this section is , 
+      they dont make it "cant be deleted" like the note!
+
+
+2.Super user could modify God account or other super user account
+
+it mean that super user could 'take over' God Admin account and change it to
+user . super user could modify other super user and change it to user accounts
+
+POC : as y3dips modify dudul or geblek and change permissions to user, not only that!
+      you can change all information and password 
+
+solutions from me : be carefull to choose your super user :p
+solution from vendor : not contacted yet
+
+
+clue : does phpnuke only allow or made just for one super user ? 
+       how about in big sites and need more management from other branch or etc 
+
+----------------------------------------------------------------------------------
+
+Shoutz:
+~~~~~~~
+
+~ echo|staff (m0by, the_day, comex, z3r0byt3, K-159*, c-a-s-e, S`to)
+~ newbie_hacker@yahoogroups.com , 
+~ #e-c-h-o@DALNET
+
+
+* : thx for the time and the spirit :)
+-----------------------------------------------------------------------------------
+
+Contact:
+~~~~~~~~
+
+    y3dips@phreaker.net
+    y3dips || echo|staff
+
+    Homepage: http://echo.or.id/
+
+---------------------------------- [ EOF ] -----------------------------------------
